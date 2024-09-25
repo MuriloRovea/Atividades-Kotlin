@@ -1,0 +1,48 @@
+import java.text.DecimalFormat
+
+fun main() {
+    
+    val nomeProduto: String = "Notebook"
+    val precoUnitario: Double = 2500.00
+    val quantidadeComprada: Int = 3
+    val taxaImposto: Double = 15.0 // em porcentagem
+    val margemLucro: Double = 20.0 // em porcentagem
+
+  
+    
+  
+    val valorTotalSemImpostos: Double = precoUnitario * quantidadeComprada
+
+   
+    val valorImposto: Double = valorTotalSemImpostos * (taxaImposto / 100)
+    
+   
+    val valorTotalComImpostos: Double = valorTotalSemImpostos + valorImposto
+
+   
+    val precoVenda: Double = valorTotalComImpostos * (1 + (margemLucro / 100))
+
+    
+    
+    val precoVendaArredondado: Double = String.format("%.2f", precoVenda).toDouble()
+
+   
+    val df = DecimalFormat("R$ #,##0.00")
+    val valorTotalFormatado: String = df.format(valorTotalComImpostos)
+    val precoVendaFormatado: String = df.format(precoVendaArredondado)
+
+    
+    val mensagemFinal: String = "Produto: $nomeProduto\nValor total com impostos: $valorTotalFormatado\nPreço de venda sugerido: $precoVendaFormatado"
+
+   
+    println("Nome do Produto: $nomeProduto")
+    println("Preço unitário: R$ $precoUnitario")
+    println("Quantidade comprada: $quantidadeComprada")
+    println("Taxa de imposto: $taxaImposto%")
+    println("Margem de lucro desejada: $margemLucro%")
+    println("Valor total sem impostos: R$ ${df.format(valorTotalSemImpostos)}")
+    println("Valor do imposto: R$ ${df.format(valorImposto)}")
+    println("Valor total com impostos: $valorTotalFormatado")
+    println("Preço de venda sugerido: $precoVendaFormatado")
+    println("\nMensagem Final:\n$mensagemFinal")
+}
